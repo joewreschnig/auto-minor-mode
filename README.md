@@ -1,10 +1,10 @@
 # auto-minor-mode
 
-This package lets you enable minor modes based on file (or buffer)
-name and contents. To find the right mode, it checks filenames
-against patterns in `auto-minor-mode-alist` and file contents
-against `auto-minor-mode-magic-list`. These work like the built-in
-Emacs variables `auto-mode-alist` and `magic-mode-alist`.
+This package lets you enable minor modes based on file name and
+contents. To find the right modes, it checks filenames against
+patterns in `auto-minor-mode-alist` and file contents against
+`auto-minor-mode-magic-list`. These work like the built-in Emacs
+variables `auto-mode-alist` and `magic-mode-alist`.
 
 Unlike major modes, all matching minor modes are enabled, not only
 the first match.
