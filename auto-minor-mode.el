@@ -46,6 +46,7 @@
 ;; must load (and not defer) `auto-minor-mode' before using these
 ;; keywords for other packages.
 
+
 ;;; Code:
 
 (require 'cl-lib)
@@ -139,9 +140,9 @@ don’t re-activate minor modes already enabled in the buffer."
         (auto-minor-mode--run-magic auto-minor-mode-magic-alist
                                     keep-mode-if-same)))))
 
-
 ;;;###autoload
 (advice-add #'set-auto-mode :after #'auto-minor-mode-set)
+
 
 ;;;
 ;; use-package integration
@@ -163,6 +164,7 @@ don’t re-activate minor modes already enabled in the buffer."
             (append (cl-subseq use-package-keywords 0 pos)
                     '(:minor :magic-minor)
                     (cl-subseq use-package-keywords pos))))))
+
 
 (provide 'auto-minor-mode)
 ;;; auto-minor-mode.el ends here
