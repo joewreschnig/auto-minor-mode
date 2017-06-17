@@ -3,8 +3,8 @@
 ;; Copyright 2017 Joe Wreschnig
 ;;
 ;; Author: Joe Wreschnig <joe.wreschnig@gmail.com>
-;; Package-Version: 20170606
-;; Package-Requires: ((emacs "24.4"))
+;; Package-Version: 20170617
+;; Package-Requires: ((emacs "25"))
 ;; Keywords: convenience
 ;;
 ;; This program is free software; you can redistribute it and/or modify
@@ -26,7 +26,7 @@
 ;; contents.  To find the right modes, it checks filenames against
 ;; patterns in `auto-minor-mode-alist' and file contents against
 ;; `auto-minor-mode-magic-alist'.  These work like the built-in Emacs
-;; variables `alistauto-mode-alist' and `magic-mode-alist'.
+;; variables `auto-mode-alist' and `magic-mode-alist'.
 ;;
 ;; Unlike major modes, all matching minor modes are enabled, not only
 ;; the first match.
@@ -40,14 +40,22 @@
 ;;
 ;; Minor modes are set whenever `set-auto-mode', the built-in function
 ;; responsible for handling automatic major modes, is called.
+;;
+;; If you also use `use-package', two new keywords are added, `:minor'
+;; and `:magic-minor', which register entries in these alists.  You
+;; must load (and not defer) `auto-minor-mode' before using these
+;; keywords for other packages.
 
 ;;; Code:
+
+(require 'cl-lib)
+(require 'subr-x)
 
 ;;;###autoload
 (defvar auto-minor-mode-alist ()
   "Alist of filename patterns vs corresponding minor mode functions.
 
-This is an equivalent of `alistauto-mode-alist', for minor modes.
+This is an equivalent of `auto-mode-alist', for minor modes.
 
 Unlike `auto-mode-alist', matching is always case-folded.")
 
@@ -134,6 +142,27 @@ don’t re-activate minor modes already enabled in the buffer."
 
 ;;;###autoload
 (advice-add #'set-auto-mode :after #'auto-minor-mode-set)
+
+;;;
+;; use-package integration
+
+(with-eval-after-load 'use-package
+  (defalias 'use-package-normalize/:minor #'use-package-normalize-mode)
+  (defalias 'use-package-normalize/:magic-minor #'use-package-normalize-mode)
+
+  (defun use-package-handler/:minor (name _ arg rest state)
+    (use-package-handle-mode name 'auto-minor-mode-alist arg rest state))
+
+  (defun use-package-handler/:magic-minor (name _ arg rest state)
+    (use-package-handle-mode name 'auto-minor-mode-magic-alist arg rest state))
+
+  (when (and (fboundp #'use-package-handle-mode) ; added in 5bd87be
+             (not (memq :minor use-package-keywords)))
+    (when-let ((pos (cl-position :commands use-package-keywords)))
+      (setq use-package-keywords
+            (append (cl-subseq use-package-keywords 0 pos)
+                    '(:minor :magic-minor)
+                    (cl-subseq use-package-keywords pos))))))
 
 (provide 'auto-minor-mode)
 ;;; auto-minor-mode.el ends here
