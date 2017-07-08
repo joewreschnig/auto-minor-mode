@@ -20,9 +20,20 @@ then be enabled by major mode hooks.
 Minor modes are set whenever `set-auto-mode`, the built-in function
 responsible for handling automatic major modes, is called.
 
+
+## use-package Integration
+
+If you also use [use-package][], two new keywords are added, `:minor`
+and `:magic-minor`, which register entries in these alists. You must
+load (and not defer) `auto-minor-mode` before using these keywords.
+
+
 ## License
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or (at
 your option) any later version.
+
+
+[use-package]: https://github.com/jwiegley/use-package
