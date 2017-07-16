@@ -95,7 +95,7 @@ information, see `auto-mode-alist'.
 If the optional argument KEEP-MODE-IF-SAME is non-nil, then we
 don’t re-activate minor modes already enabled in the buffer."
   (when buffer-file-name
-    (let* ((bufname (auto-minor-mode--plain-filename buffer-file-name)))
+    (let ((bufname (auto-minor-mode--plain-filename buffer-file-name)))
       (dolist (p alist)
         (let ((match (car p))
               (mode (cdr p)))
