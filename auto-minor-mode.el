@@ -81,7 +81,7 @@ Unlike `magic-mode-alist', matching is always case-folded.")
   "Remove remote connections and backup version from FILE-NAME."
   (let ((remote-id (file-remote-p file-name))
         (file-name (file-name-sans-versions file-name)))
-    (if (and remote-id (string-match-p (regexp-quote remote-id) file-name))
+    (if (and remote-id (string-match (regexp-quote remote-id) file-name))
         (substring file-name (match-end 0))
       file-name)))
 
