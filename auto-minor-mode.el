@@ -5,6 +5,7 @@
 ;; Author: Joe Wreschnig <joe.wreschnig@gmail.com>
 ;; Package-Version: 20170716
 ;; Package-Requires: ((emacs "25"))
+;; URL: https://github.com/joewreschnig/auto-minor-mode
 ;; Keywords: convenience
 ;;
 ;; This program is free software; you can redistribute it and/or modify
