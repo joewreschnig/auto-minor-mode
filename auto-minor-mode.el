@@ -25,9 +25,9 @@
 ;;
 ;; This package lets you enable minor modes based on file name and
 ;; contents.  To find the right modes, it checks filenames against
-;; patterns in `auto-minor-mode-alist' and file contents against
-;; `auto-minor-mode-magic-alist'.  These work like the built-in Emacs
-;; variables `auto-mode-alist' and `magic-mode-alist'.
+;; patterns in ‘auto-minor-mode-alist’ and file contents against
+;; ‘auto-minor-mode-magic-alist’.  These work like the built-in Emacs
+;; variables ‘auto-mode-alist’ and ‘magic-mode-alist’.
 ;;
 ;; Unlike major modes, all matching minor modes are enabled, not only
 ;; the first match.
@@ -35,16 +35,16 @@
 ;; A reason you might want to use it:
 ;;   (add-to-list 'auto-minor-mode-alist '("-theme\\.el\\'" . rainbow-mode))
 ;;
-;; There's intentionally no equivalent of `interpreter-mode-alist'.
+;; There’s intentionally no equivalent of ‘interpreter-mode-alist’.
 ;; Interpreters should determine the major mode.  Relevant minor
 ;; modes can then be enabled by major mode hooks.
 ;;
-;; Minor modes are set whenever `set-auto-mode', the built-in function
+;; Minor modes are set whenever ‘set-auto-mode’, the built-in function
 ;; responsible for handling automatic major modes, is called.
 ;;
-;; If you also use `use-package', two new keywords are added, `:minor'
-;; and `:magic-minor', which register entries in these alists.  You
-;; must load (and not defer) `auto-minor-mode' before using these
+;; If you also use ‘use-package’, two new keywords are added, ‘:minor’
+;; and ‘:magic-minor’, which register entries in these alists.  You
+;; must load (and not defer) ‘auto-minor-mode’ before using these
 ;; keywords for other packages.
 
 
@@ -57,21 +57,21 @@
 (defvar auto-minor-mode-alist ()
   "Alist of filename patterns vs corresponding minor mode functions.
 
-This is an equivalent of `auto-mode-alist', for minor modes.
+This is an equivalent of ‘auto-mode-alist’, for minor modes.
 
-Unlike `auto-mode-alist', matching is always case-folded.")
+Unlike ‘auto-mode-alist’, matching is always case-folded.")
 
 ;;;###autoload
 (defvar auto-minor-mode-magic-alist ()
   "Alist of buffer beginnings vs corresponding minor mode functions.
 
-This is an equivalent of `magic-mode-alist', for minor modes.
+This is an equivalent of ‘magic-mode-alist’, for minor modes.
 
-Magic minor modes are applied after `set-auto-mode' enables any
-major mode, so it's possible to check for expected major modes in
+Magic minor modes are applied after ‘set-auto-mode’ enables any
+major mode, so it’s possible to check for expected major modes in
 match functions.
 
-Unlike `magic-mode-alist', matching is always case-folded.")
+Unlike ‘magic-mode-alist’, matching is always case-folded.")
 
 (defun auto-minor-mode-enabled-p (minor-mode)
   "Return non-nil if MINOR-MODE is enabled in the current buffer."
@@ -90,8 +90,8 @@ Unlike `magic-mode-alist', matching is always case-folded.")
   "Run through an auto ALIST and enable all matching minor modes.
 
 A auto alist contains pairs of regexps or functions to match the
-buffer's contents, and functions to call when matched.  For more
-information, see `auto-mode-alist'.
+buffer’s contents, and functions to call when matched.  For more
+information, see ‘auto-mode-alist’.
 
 If the optional argument KEEP-MODE-IF-SAME is non-nil, then we
 don’t re-activate minor modes already enabled in the buffer."
@@ -109,8 +109,8 @@ don’t re-activate minor modes already enabled in the buffer."
   "Run through a magic ALIST and enable all matching minor modes.
 
 A magic alist contains pairs of regexps or functions to match the
-buffer's contents, and functions to call when matched.  For more
-information, see `magic-mode-alist'.
+buffer’s contents, and functions to call when matched.  For more
+information, see ‘magic-mode-alist’.
 
 If the optional argument KEEP-MODE-IF-SAME is non-nil, then we
 don’t re-activate minor modes already enabled in the buffer."

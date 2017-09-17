@@ -19,8 +19,8 @@
 
 ;;; Commentary:
 ;;
-;; This file contains test cases for auto-minor-mode.  Unless you're
-;; hacking on it you shouldn't need to edit or run this file.
+;; This file contains test cases for auto-minor-mode.  Unless you’re
+;; hacking on it you shouldn’t need to edit or run this file.
 
 ;;; Code:
 
@@ -32,12 +32,12 @@
   "A counter for mode-re-enabling testing.")
 
 (define-minor-mode auto-minor-mode--test-mode
-  "A mode for `auto-minor-mode' test cases."
+  "A mode for ‘auto-minor-mode’ test cases."
   nil nil nil
   (setq auto-minor-mode--test (1+ auto-minor-mode--test)))
 
 (defmacro auto-minor-mode--protect (&rest body)
-  "Do BODY forms, disabling `auto-minor-mode--test-mode' when done."
+  "Do BODY forms, disabling ‘auto-minor-mode--test-mode’ when done."
   (declare (indent defun))
   `(unwind-protect
        (progn ,@body)
