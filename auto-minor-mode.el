@@ -4,7 +4,7 @@
 ;;
 ;; Author: Joe Wreschnig <joe.wreschnig@gmail.com>
 ;; Package-Version: 20170716
-;; Package-Requires: ((emacs "25"))
+;; Package-Requires: ((emacs "24.4"))
 ;; URL: https://github.com/joewreschnig/auto-minor-mode
 ;; Keywords: convenience
 ;;
@@ -51,7 +51,6 @@
 ;;; Code:
 
 (require 'cl-lib)
-(require 'subr-x)
 
 ;;;###autoload
 (defvar auto-minor-mode-alist ()
@@ -160,11 +159,12 @@ don’t re-activate minor modes already enabled in the buffer."
 
   (when (and (fboundp #'use-package-handle-mode) ; added in 5bd87be
              (not (memq :minor use-package-keywords)))
-    (when-let ((pos (cl-position :commands use-package-keywords)))
-      (setq use-package-keywords
-            (append (cl-subseq use-package-keywords 0 pos)
-                    '(:minor :magic-minor)
-                    (cl-subseq use-package-keywords pos))))))
+    (let ((pos (cl-position :commands use-package-keywords)))
+      (when pos
+        (setq use-package-keywords
+              (append (cl-subseq use-package-keywords 0 pos)
+                      '(:minor :magic-minor)
+                      (cl-subseq use-package-keywords pos)))))))
 
 
 (provide 'auto-minor-mode)
