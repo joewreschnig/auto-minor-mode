@@ -8,7 +8,7 @@
 # compiled binary, for any purpose, commercial or non-commercial, and
 # by any means.
 
-EMACS ?= $(firstword $(shell command -v /Applications/Emacs.app/Contents/MacOS/Emacs emacs))
+EMACS ?= emacs
 SRC := auto-minor-mode.el
 OBJ := $(SRC:.el=.elc)
 DIR := $(dir $(lastword $(MAKEFILE_LIST)))
