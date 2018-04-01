@@ -169,7 +169,3 @@ don’t re-activate minor modes already enabled in the buffer."
 
 (provide 'auto-minor-mode)
 ;;; auto-minor-mode.el ends here
-
-;; Local Variables:
-;; sentence-end-double-space: t
-;; End:
