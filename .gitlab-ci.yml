@@ -1,0 +1,6 @@
+image: "registry.gitlab.com/joewreschnig/emacs-cask-docker-image:alpine-edge"
+
+test:
+  stage: test
+  script:
+    - make
