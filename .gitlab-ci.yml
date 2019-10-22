@@ -1,6 +1,28 @@
-image: "registry.gitlab.com/joewreschnig/emacs-cask-docker-image:alpine-edge"
-
-test:
+.test:
   stage: test
   script:
     - make
+
+test-24.5:
+  image: "flycheck/emacs-cask:24.5"
+  extends: .test
+
+test-25.3:
+  image: "flycheck/emacs-cask:25.3"
+  extends: .test
+
+test-26.1:
+  image: "flycheck/emacs-cask:26.1"
+  extends: .test
+
+test-26.2:
+  image: "flycheck/emacs-cask:26.2"
+  extends: .test
+
+test-26.3:
+  image: "flycheck/emacs-cask:26.3"
+  extends: .test
+
+test-master:
+  image: "flycheck/emacs-cask:master"
+  extends: .test
