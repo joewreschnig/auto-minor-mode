@@ -134,10 +134,10 @@
 
 (ert-deftest auto-minor-mode--test-re-enable ()
   (add-to-list 'auto-minor-mode-alist
-               '("\\.ammtest\\'" . auto-minor-mode--test-mode))
+               '("\\.ammtest" . auto-minor-mode--test-mode))
   (auto-minor-mode--protect
     (setq auto-minor-mode--test 0)
-    (let ((filename (make-temp-file "auto-minor-mode" nil ".ammtest")))
+    (let ((filename (make-temp-file "auto-minor-mode" nil ".ammtest.el")))
       (find-file filename)
       (unwind-protect
           (progn
