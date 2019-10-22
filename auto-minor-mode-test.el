@@ -25,8 +25,8 @@
 ;;; Code:
 
 (require 'auto-minor-mode)
+(require 'cl-lib)
 (require 'ert)
-(require 'seq)
 
 (defvar auto-minor-mode--test 0
   "A counter for mode-re-enabling testing.")
@@ -43,9 +43,9 @@
        (progn ,@body)
      (let ((is-test (lambda (p) (eq (cdr p) #'auto-minor-mode--test-mode))))
        (setq auto-minor-mode-alist
-             (seq-remove is-test auto-minor-mode-alist))
+             (cl-remove-if is-test auto-minor-mode-alist))
        (setq auto-minor-mode-magic-alist
-             (seq-remove is-test auto-minor-mode-magic-alist)))))
+             (cl-remove-if is-test auto-minor-mode-magic-alist)))))
 
 (defun auto-minor-mode--test-suffix-p (suffix)
   "Return non-nil if a file ending with SUFFIX enables the test mode."
